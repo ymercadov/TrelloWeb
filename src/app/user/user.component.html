@@ -1,0 +1,46 @@
+
+  <div *ngIf="userSelected">
+   
+      <app-title [title]="'User: ' + (userSelected.userName === undefined ? 'New User' : userSelected.userName)
+      ">
+        <div class="mt-1"> <button class="btn btn-primary" (click) ='back()'>List of Users</button></div>
+      </app-title> 
+     
+
+     <form [(formGroup)]="userForm" (submit)="userSubmit()">
+      <div class="form-group">
+        <label for="formGroupExampleInput">Name</label>
+        <input type="text" formControlName="userName" class="form-control" 
+        id="txtuser" placeholder="Type UserName">
+      </div>   
+      <div class="form-group">
+        <hr>
+       <button class="btn btn-sm btn-success" [disabled]="!userForm.valid">Save</button> 
+    </div>     
+    </form>     
+  </div>
+
+  <div *ngIf="!userSelected" >
+    <app-title [title]="title">
+      <div class="mt-1"> <button class="btn btn-success" (click) ='newUser()'>+</button></div>
+    </app-title> 
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+         
+          <th scope="col">#</th>
+          <th scope="col">User</th> 
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+        
+          <th scope="row">{{user.id}}</th>
+          <td>{{user.userName}}</td>  
+        
+        </tr>      
+      </tbody>
+    </table>
+  </div>
+  

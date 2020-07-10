@@ -1,0 +1,49 @@
+
+<div class="row">
+
+    <div class="col-sm-6" *ngIf="taskSelected">
+        <div class="row">
+            <app-title [title]="'Cod. Task: ' + (taskSelected.id === undefined ? 'New Task' : taskSelected.id)
+            "></app-title>
+            <div class="mt-1"> 
+                <button class="btn btn-sm btn-outline-danger" (click) ='back()'>List of Task</button>
+            </div>
+        </div>
+       
+        <form [(formGroup)]="taskForm" (submit)="taskSubmit(taskForm.value)">
+            <div class="form-group">
+              <label for="formGroupExampleInput">Task</label>
+              <input type="text" formControlName='taskName' class="form-control"
+              id="txttask" placeholder="Type Task">
+            </div>   
+            <div class="form-group">
+                <hr>
+               <button class="btn btn-sm btn-success" [disabled]="!taskForm.valid">Save</button> 
+            </div>    
+        </form>
+    </div>
+    <div [ngClass]="{'col-sm-6': taskSelected, 'col-sm-12':!taskSelected}" >
+        <app-title [title]="title">
+            <div class="mt-1"> 
+                <button class="btn btn-sm btn-success" (click) ='newTask()'>+</button>
+            </div>
+        </app-title>       
+        <table class="table table-hover">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">View</th>
+                <th scope="col">#</th>
+                <th scope="col">Task</th>    
+              
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let task of tasks">
+                <td><button (click)='taskSelect(task)' class="btn btn-sm btn-outline-warning">Detal</button> </td>
+                <th scope="row">{{task.id}}</th>
+                <td>{{task.taskName}}</td>                   
+            </tr>      
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+
+  <div *ngIf="tasktouserSelected">   
+    <app-title [title]="'User: ' + (tasktouserSelected.idTask === undefined ? 'New User' : tasktouserSelected.idTask)
+    ">
+      <div class="mt-1"> <button class="btn btn-primary" (click) ='back()'>List of Task to User</button></div>
+    </app-title> 
+       <form [(formGroup)]="tasktouserForm" (submit)="tasktouserSubmit()">
+      <div class="form-group">
+        <label for="formGroupExampleInput">Task</label>
+        <select formControlName="Task" class="form-control" id="selectask" >
+          <option [ngValue]="" disabled>Choose...</option>  
+          <option *ngFor="let task of tasks" [ngValue]="task">{{task.taskName}}</option>    
+        </select>
+      </div>  
+      <div class="form-group">
+          <label for="formGroupExampleInput2">User</label>
+          <select formControlName="User" class="form-control" id="selectuser" >          
+              <option [ngValue]="" disabled>Choose...</option>  
+              <option *ngFor="let user of users" [ngValue]="user">{{user.userName}}</option>    
+            </select>
+      </div>   
+      <div class="form-group">
+          <label for="formGroupExampleInput2">Status</label>
+          <select formControlName="Statu" class="form-control" id="selectstatu" >
+              <option>Choose...</option>  
+              <option *ngFor="let statu of status">{{statu.Name}}</option>    
+            </select>
+      </div>  
+      <div class="row">    
+        <div class="mt-1"> <button class="btn btn-primary">Save</button></div>
+    </div>
+  </form>     
+</div>
+
+<div *ngIf="!tasktouserSelected" >
+  <app-title [title]="title">
+    <div class="mt-1"> <button class="btn btn-success" (click) ='newtasktouserDetail()'>+</button></div>
+  </app-title> 
+  <table class="table table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">View</th>
+        <th scope="col">#</th>
+        <th scope="col">User</th> 
+        <th scope="col">Tarea</th> 
+        <th scope="col">Estado</th> 
+        <th scope="col">Options</th>          
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let tasktouserdetail of tasktouserdetails">
+        <td><button (click)='tasktouserdetailSelect(tasktouserdetail)' 
+          class="btn btn-sm btn-outline-warning">Detail</button> </td>
+        <th scope="row">{{tasktouserdetail.id}}</th>
+        <td>{{tasktouserdetail.userName}}</td>  
+        <td>{{tasktouserdetail.taskName}}</td>  
+        <td>{{tasktouserdetail.name}}</td>  
+        <td>
+            <div class="btn-group">   
+                <button class="btn btn-sm btn-outline-danger" (click)="delete(tasktouserdetail.id)">Delete</button>
+            </div>
+        </td>       
+    </tr> 
+    </tbody>
+  </table>
+</div>
