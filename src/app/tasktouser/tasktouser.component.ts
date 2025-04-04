@@ -128,8 +128,9 @@ consulDetail()
 
 tasktouserdetailSelect(tasktouserdetail:TastToUserDetail)
   {
+    
     this.tasktouserdetailSelected = tasktouserdetail;
-    //this.userForm.patchValue(tasktouserdetail)
+    //this.tasktouserForm.patchValue(tasktouserdetail)
   }
 
 delete(id:string)
