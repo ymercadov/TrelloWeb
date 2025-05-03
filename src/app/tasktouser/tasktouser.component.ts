@@ -77,6 +77,21 @@ getAlluser(){
   })
 }
 
+getAllstatu(){  
+  this.api.getAllStatu()
+  .subscribe((data:Statu[]) =>{
+    this.status = data;
+    console.log(this.status);
+  },
+  (erro:any)=>{
+    console.error(erro);
+  })
+}
+
+
+
+
+
 save(tasktouser:TaskToUser){
   (tasktouser.id == '') ? this.modo='add' : this.modo = 'update';
   this.api[this.modo](tasktouser)
@@ -110,6 +125,7 @@ debugger;
   {
     this.getAllTask();
     this.getAlluser(); 
+    this.getAllstatu();
     this.tasktouserSelected = new TaskToUser();
   /*  this.userForm.patchValue(this.userSelected);*/
   }

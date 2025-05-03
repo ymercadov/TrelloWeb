@@ -10,7 +10,8 @@
             </div>
         </div>
        
-        <form [(formGroup)]="taskForm" (submit)="taskSubmit(taskForm.value)">
+        <!-- <form [(formGroup)]="taskForm"(submit)="taskSubmit(taskForm.value)"> -->
+            <form [(formGroup)]="taskForm"(submit)="taskSubmit()">
             <div class="form-group">
               <label for="formGroupExampleInput">Task</label>
               <input type="text" formControlName='taskName' class="form-control"
